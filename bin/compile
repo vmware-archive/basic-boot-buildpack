@@ -6,12 +6,12 @@ build_dir=$1
 vendor_dir=${build_dir}/vendor
 mkdir -p ${vendor_dir}
 
-echo "Repacking application."
+echo "Repacking application..."
 cd ${build_dir}
 zip -r -q -Z store application *
 mv application.zip application.jar
 
-echo "Downloading jre."
+echo "Downloading jre..."
 ### NOTE: make sure to update to latest jre to help ensure that CVEs have been addressed!
 
 # oracle jdk8
@@ -22,10 +22,7 @@ echo "Downloading jre."
 JRE_ARCHIVE=openjdk-1.8.0_91.tar.gz
 wget -q https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/${JRE_ARCHIVE}
 
-echo "Extracting JRE."
+echo "Extracting jre..."
 mv ${JRE_ARCHIVE} ${vendor_dir}
 cd ${vendor_dir}
 tar -xzf ${JRE_ARCHIVE}
-echo "Extracted JRE to ${vendor_dir}."
-
-echo "Done."
