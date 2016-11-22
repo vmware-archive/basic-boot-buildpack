@@ -14,7 +14,7 @@ To use it to run an app add this buildpack directly to the push command (via the
    memory: 512M
    instances: 1
    path: target/my-boot-app.jar
-   buildpack: https://github.com/cf-platform-eng/agent-buildpack
+   buildpack: https://github.com/cf-platform-eng/basic-boot-buildpack
  ```
 
 ##Important Note!
