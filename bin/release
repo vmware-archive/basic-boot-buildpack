@@ -4,5 +4,5 @@ cat << EOF
 addons: []
 config_vars: []
 default_process_types:
-  web: echo "would have called this: vendor/bin/java -jar application.jar"
+  web: echo "would have called vendor/bin/java -jar application.jar"
 EOF
