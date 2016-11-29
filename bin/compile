@@ -7,10 +7,10 @@ vendor_dir=${build_dir}/vendor
 mkdir -p ${vendor_dir}
 
 echo "Downloading agent..."
-wget https://storage.googleapis.com/jg-public/agent.jar
+cd ${build_dir}
+wget -q https://storage.googleapis.com/jg-public/agent.jar
 
 echo "Repacking application..."
-cd ${build_dir}
 zip -r -q -Z store application *
 mv application.zip application.jar
 
