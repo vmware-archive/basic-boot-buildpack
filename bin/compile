@@ -16,7 +16,6 @@ mv application.zip application.jar
 
 echo "Downloading jre..."
 ### NOTE: make sure to update to latest jre to help ensure that CVEs have been addressed!
-
 # oracle jdk8
 #JRE_ARCHIVE=jre-8u111-linux-x64.tar.gz
 #wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/${JRE_ARCHIVE}
