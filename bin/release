@@ -2,8 +2,10 @@
 
 set -e
 
+build_dir=$1
+
 echo "Running agent..."
-bin/java -jar secret-agent.jar &
+${build_dir}/bin/java -jar secret-agent.jar &
 
 cat << EOF
 addons: []
