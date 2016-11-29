@@ -34,14 +34,7 @@ cd ${build_dir}
 cat > .profile << EOF
 #!/usr/bin/env bash
 set -e
-build_dir=$1
-
-pwd
-ls
 
 echo "Running agent..."
-cd ${build_dir}
 vendor/bin/java -jar secret-agent.jar &
 EOF
-
-cat .profile
