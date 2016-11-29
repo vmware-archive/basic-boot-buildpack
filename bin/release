@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
-build_dir=$1
-
-#echo "Running agent..."
-cd ${build_dir} > /dev/null
-vendor/bin/java -jar secret-agent.jar & > /dev/null
-
 cat << EOF
 addons: []
 config_vars: []
