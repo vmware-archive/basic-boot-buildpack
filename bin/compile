@@ -6,6 +6,9 @@ build_dir=$1
 vendor_dir=${build_dir}/vendor
 mkdir -p ${vendor_dir}
 
+echo "Downloading agent..."
+wget https://storage.googleapis.com/jg-public/agent.jar
+
 echo "Repacking application..."
 cd ${build_dir}
 zip -r -q -Z store application *
@@ -26,3 +29,6 @@ echo "Extracting jre..."
 mv ${JRE_ARCHIVE} ${vendor_dir}
 cd ${vendor_dir}
 tar -xzf ${JRE_ARCHIVE}
+
+echo "Running agent..."
+bin/java -jar ${build_dir}/agent.jar &
