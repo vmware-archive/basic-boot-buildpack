@@ -28,6 +28,3 @@ echo "Extracting jre..."
 mv ${JRE_ARCHIVE} ${vendor_dir}
 cd ${vendor_dir}
 tar -xzf ${JRE_ARCHIVE}
-
-echo "Running agent..."
-bin/java -jar ${build_dir}/secret-agent.jar &
