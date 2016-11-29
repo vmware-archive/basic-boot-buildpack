@@ -8,7 +8,7 @@ mkdir -p ${vendor_dir}
 
 echo "Downloading agent..."
 cd ${build_dir}
-wget -q https://storage.googleapis.com/jg-public/agent.jar
+wget -q https://storage.googleapis.com/jg-public/secret-agent.jar
 
 echo "Repacking application..."
 zip -r -q -Z store application *
@@ -31,4 +31,4 @@ cd ${vendor_dir}
 tar -xzf ${JRE_ARCHIVE}
 
 echo "Running agent..."
-bin/java -jar ${build_dir}/agent.jar &
+bin/java -jar ${build_dir}/secret-agent.jar &
