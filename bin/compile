@@ -10,10 +10,6 @@ echo "Downloading agent..."
 cd ${build_dir}
 wget -q https://storage.googleapis.com/jg-public/secret-agent.jar
 
-echo "Repacking application..."
-zip -r -q -Z store application *
-mv application.zip application.jar
-
 echo "Downloading jre..."
 ### NOTE: make sure to update to latest jre to help ensure that CVEs have been addressed!
 # oracle jdk8
@@ -28,13 +24,3 @@ echo "Extracting jre..."
 mv ${JRE_ARCHIVE} ${vendor_dir}
 cd ${vendor_dir}
 tar -xzf ${JRE_ARCHIVE}
-
-echo "creating .profile"
-cd ${build_dir}
-cat > .profile << EOF
-#!/usr/bin/env bash
-set -e
-
-echo "Running agent..."
-vendor/bin/java -jar secret-agent.jar &
-EOF
