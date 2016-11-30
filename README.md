@@ -1,21 +1,19 @@
 # basic-boot-buildpack
 
-This is the most basic buildpack imaginable. It will run a spring boot application. That is all.
+This version of the buildpack can be used to install an [agent app](https://github.com/cf-platform-eng/secret-agent/tree/master/agent) to be run alongside [another app](https://github.com/cf-platform-eng/secret-agent/tree/master/passthrough) in a single container.
 
-It is designed to be used with the [multi-buildpack](https://github.com/cloudfoundry-incubator/multi-buildpack) for things like installing agents implemented in spring-boot, to be run alongside other applications inside a container.
-
-The buildpack is hard-coded to return false during the detect phase, so it will not be activated by apps pushed via cf push.
+In this case, the "other app" will passthrough requests to the agent and return the results. The agent is running alongside the passthrough app in the same container, and cannot be reached other than through the passthrough.
  
-To use it to run an app add this buildpack directly to the push command (via the -b flag) or declare it in the app's manifest.
+To use this buidpack create a manifest (such as the example below) and use it to push your app. The agent will be installed by the buildpack alongside your app. Make sure to allow enough memory for both your app and the agent. The app can be scaled up and down as per any other cf application, and each new instance will get its own agent.
  
 ````yaml
- applications:
- - name: my-boot-app
-   memory: 512M
-   instances: 1
-   path: target/my-boot-app.jar
-   buildpack: https://github.com/cf-platform-eng/basic-boot-buildpack
+applications:
+- name: passthrough
+  memory: 1G
+  instances: 1
+  path: target/passthrough-1.0.0.jar
+  buildpack: https://github.com/cf-platform-eng/basic-boot-buildpack
  ```
 
 ##Important Note!
-Before using this buildpack you wil want to make sure you are pointing to the latest jre to make sure that any CVEs have been mitigated. See the detect script for how to control this.
+Before using this buildpack you will want to make sure you are pointing to the latest jre to make sure that any CVEs have been mitigated. See the detect script for how to control this.
