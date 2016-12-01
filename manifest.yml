@@ -13,7 +13,7 @@ dependencies:
   - name: agent
     version: 1.0.0
     uri: https://storage.googleapis.com/jg-public/secret-agent.jar
-    md5: f98b4843f9123348c040db4fb3fd8dbc
+    md5: f4bc684619a5aaa62962875acae67e96
     cf_stacks:
       - lucid64
       - cflinuxfs2
