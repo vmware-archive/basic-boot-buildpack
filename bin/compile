@@ -3,12 +3,13 @@
 set -e
 
 build_dir=$1
-vendor_dir=${build_dir}/vendor
-mkdir -p ${vendor_dir}
 
+cd ${build_dir}
 echo "Repacking application..."
 zip -r -q -Z store application *
 mv application.zip application.jar
+
+ls
 
 echo "Downloading jre..."
 ### NOTE: make sure to update to latest jre to help ensure that CVEs have been addressed!
@@ -19,6 +20,9 @@ echo "Downloading jre..."
 # openJDK from java-buildpack caches (https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/index.yml)
 JRE_ARCHIVE=openjdk-1.8.0_91.tar.gz
 wget -q https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/${JRE_ARCHIVE}
+
+vendor_dir=${build_dir}/vendor
+mkdir -p ${vendor_dir}
 
 echo "Extracting jre..."
 mv ${JRE_ARCHIVE} ${vendor_dir}
