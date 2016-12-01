@@ -2,19 +2,11 @@
 
 set -e
 
-build_dir=$1
-vendor_dir=${build_dir}/vendor
-mkdir -p ${vendor_dir}
-
-echo "Downloading agent..."
-cd ${build_dir}
-wget -q https://storage.googleapis.com/jg-public/secret-agent.jar
-
-echo "Repacking application..."
-zip -r -q -Z store application *
-mv application.zip application.jar
+jre_dir=${build_dir}/jre
+mkdir -p ${jre_dir}
 
 echo "Downloading jre..."
+cd ${jre_dir}
 ### NOTE: make sure to update to latest jre to help ensure that CVEs have been addressed!
 # oracle jdk8
 #JRE_ARCHIVE=jre-8u111-linux-x64.tar.gz
@@ -25,9 +17,11 @@ JRE_ARCHIVE=openjdk-1.8.0_91.tar.gz
 wget -q https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/${JRE_ARCHIVE}
 
 echo "Extracting jre..."
-mv ${JRE_ARCHIVE} ${vendor_dir}
-cd ${vendor_dir}
 tar -xzf ${JRE_ARCHIVE}
+
+echo "Downloading agent..."
+cd ${build_dir}
+wget -q https://storage.googleapis.com/jg-public/secret-agent.jar
 
 echo "creating .profile"
 cd ${build_dir}
