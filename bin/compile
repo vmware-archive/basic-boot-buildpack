@@ -5,11 +5,12 @@ set -e
 build_dir=$1
 
 cd ${build_dir}
+ls
+
+
 echo "Repacking application..."
 zip -r -q -Z store application *
 mv application.zip application.jar
-
-ls
 
 echo "Downloading jre..."
 ### NOTE: make sure to update to latest jre to help ensure that CVEs have been addressed!
