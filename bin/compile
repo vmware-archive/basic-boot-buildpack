@@ -6,10 +6,6 @@ build_dir=$1
 vendor_dir=${build_dir}/vendor
 mkdir -p ${vendor_dir}
 
-echo "Downloading agent..."
-cd ${build_dir}
-wget -q https://storage.googleapis.com/jg-public/secret-agent.jar
-
 echo "Repacking application..."
 zip -r -q -Z store application *
 mv application.zip application.jar
@@ -28,13 +24,3 @@ echo "Extracting jre..."
 mv ${JRE_ARCHIVE} ${vendor_dir}
 cd ${vendor_dir}
 tar -xzf ${JRE_ARCHIVE}
-
-echo "creating .profile"
-cd ${build_dir}
-cat > .profile << EOF
-#!/usr/bin/env bash
-set -e
-
-echo "Running agent..."
-vendor/bin/java -jar secret-agent.jar &
-EOF
