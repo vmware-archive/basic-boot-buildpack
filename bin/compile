@@ -2,25 +2,20 @@
 
 set -e
 
+this_file=$0
 build_dir=$1
+
+this_dir=`dirname $0`
+cd ${this_dir}/../dependencies
+deps_dir=`pwd`
+
 vendor_dir=${build_dir}/vendor
 mkdir -p ${vendor_dir}
 
-echo "Downloading agent..."
-cd ${build_dir}
-wget -q https://storage.googleapis.com/jg-public/secret-agent.jar
-
-echo "Downloading jre..."
-### NOTE: make sure to update to latest jre to help ensure that CVEs have been addressed!
-# oracle jdk8
-#JRE_ARCHIVE=jre-8u111-linux-x64.tar.gz
-#wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u111-b14/${JRE_ARCHIVE}
-
-# openJDK from java-buildpack caches (https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/index.yml)
-JRE_ARCHIVE=openjdk-1.8.0_91.tar.gz
-wget -q https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/${JRE_ARCHIVE}
-
 echo "Extracting jre..."
-mv ${JRE_ARCHIVE} ${vendor_dir}
+cp ${deps_dir}/*.gz ${vendor_dir}/jre.tar.gz
 cd ${vendor_dir}
-tar -xzf ${JRE_ARCHIVE}
+tar -xzf jre.tar.gz
+
+echo "installing agent..."
+cp ${deps_dir}/*.jar ${build_dir}/agent.jar
