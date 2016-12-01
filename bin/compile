@@ -2,6 +2,8 @@
 
 set -e
 
+build_dir=$1
+
 jre_dir=${build_dir}/jre
 mkdir -p ${jre_dir}
 
