@@ -4,6 +4,9 @@ set -e
 
 build_dir=$1
 
+cd ${build_dir}
+ls -la
+
 jre_dir=${build_dir}/jre
 mkdir -p ${jre_dir}
 cd ${jre_dir}
