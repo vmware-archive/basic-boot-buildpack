@@ -23,3 +23,8 @@ wget -q https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/${JRE_ARCH
 
 echo "Extracting jre..."
 tar -xzf ${JRE_ARCHIVE}
+
+cd ${build_dir}
+ls -la
+
+cat .profile
