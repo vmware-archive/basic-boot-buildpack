@@ -1,3 +1,5 @@
+# basic-boot-buildpack is no longer actively maintained by VMware.
+
 # basic-boot-buildpack
 
 This is the most basic buildpack imaginable. It will run a spring boot application. That is all.
